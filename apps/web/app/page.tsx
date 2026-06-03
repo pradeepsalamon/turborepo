@@ -189,6 +189,7 @@ export default function HomePage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(movieForm),
+        credentials: 'include',
       });
       const data = await res.json();
       if (res.ok) {
@@ -208,7 +209,10 @@ export default function HomePage() {
     setActionSuccess(null);
     if (!confirm('Are you sure you want to delete this movie?')) return;
     try {
-      const res = await fetch(`${API_URL}/movies/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/movies/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
       if (res.ok) {
         setActionSuccess('Movie deleted successfully');
         fetchMovies();
@@ -230,6 +234,7 @@ export default function HomePage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(theatreForm),
+        credentials: 'include',
       });
       const data = await res.json();
       if (res.ok) {
@@ -249,7 +254,10 @@ export default function HomePage() {
     setActionSuccess(null);
     if (!confirm('Are you sure you want to delete this theatre?')) return;
     try {
-      const res = await fetch(`${API_URL}/theatre/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/theatre/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
       if (res.ok) {
         setActionSuccess('Theatre deleted successfully');
         fetchTheatres();
@@ -280,6 +288,7 @@ export default function HomePage() {
           totalSeats: Number(screenForm.totalSeats),
           theatreId: screenForm.theatreId,
         }),
+        credentials: 'include',
       });
       const data = await res.json();
       if (res.ok) {
@@ -299,7 +308,10 @@ export default function HomePage() {
     setActionSuccess(null);
     if (!confirm('Are you sure you want to delete this screen?')) return;
     try {
-      const res = await fetch(`${API_URL}/screen/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/screen/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
       if (res.ok) {
         setActionSuccess('Screen deleted successfully');
         fetchScreens();
@@ -330,6 +342,7 @@ export default function HomePage() {
           movieId: showForm.movieId,
           screenId: showForm.screenId,
         }),
+        credentials: 'include',
       });
       const data = await res.json();
       if (res.ok) {
@@ -349,7 +362,10 @@ export default function HomePage() {
     setActionSuccess(null);
     if (!confirm('Are you sure you want to delete this showtime?')) return;
     try {
-      const res = await fetch(`${API_URL}/show/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_URL}/show/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
       if (res.ok) {
         setActionSuccess('Showtime deleted successfully');
         fetchShows();
