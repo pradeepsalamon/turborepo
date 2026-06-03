@@ -2,6 +2,7 @@
   "name": "book-my-show",
   "private": true,
   "scripts": {
+    "postinstall": "npm run db:generate --workspace=api",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
