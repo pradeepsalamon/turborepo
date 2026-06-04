@@ -7,12 +7,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  username  String   @unique
+  id        String    @id @default(uuid())
+  email     String    @unique
+  username  String    @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Movie {
@@ -44,23 +45,24 @@ model Screen {
 }
 
 model Show {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   startTime DateTime
   price     Float
   movieId   String
-  movie     Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  movie     Movie     @relation(fields: [movieId], references: [id], onDelete: Cascade)
   screenId  String
-  screen    Screen   @relation(fields: [screenId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  screen    Screen    @relation(fields: [screenId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
 }
 
-model Booking{
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  showId    String
-  show      Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
-  ticketCount     Int
-  seats     String
+model Booking {
+  id          String @id @default(uuid())
+  userId      String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  showId      String
+  show        Show   @relation(fields: [showId], references: [id], onDelete: Cascade)
+  ticketCount Int
+  seats       String
 }
